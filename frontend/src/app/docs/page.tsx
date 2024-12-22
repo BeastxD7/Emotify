@@ -45,7 +45,7 @@ const DocsPage = () => {
     setResult(null)
 
     try {
-      const response = await fetch('https://d172-103-87-92-94.ngrok-free.app /predict', {
+      const response = await fetch('https://d172-103-87-92-94.ngrok-free.app/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
