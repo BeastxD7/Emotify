@@ -20,7 +20,7 @@ const PredictPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch("https://11dc-103-87-92-94.ngrok-free.app/predict", {
+      const response = await fetch("https://d172-103-87-92-94.ngrok-free.app /predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
