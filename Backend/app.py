@@ -69,6 +69,13 @@ def predict():
 
     sentence = data['sentence']
 
+    # Get the client's IP address
+    client_ip = request.remote_addr
+
+    # Print details to console
+    print(f"Received request from IP: {client_ip}")
+    print(f"Input sentence: {sentence}")
+
     # Get predictions
     predictions = model.predict(sentence)
     probabilities = predictions[0].tolist()  # Convert tensor to list
@@ -77,8 +84,14 @@ def predict():
     threshold = 0.3
     emotions_above_threshold = {emotion_dict[idx]: prob for idx, prob in enumerate(probabilities) if prob > threshold}
 
+    # Print predictions to console
+    print("Predictions:", {emotion_dict[idx]: prob for idx, prob in enumerate(probabilities)})
+    print("Filtered emotions above threshold:", emotions_above_threshold)
+
+    # Return response with sentence, IP address, and predictions
     return jsonify({
         'input_sentence': sentence,
+        'client_ip': client_ip,
         'probabilities': {emotion_dict[idx]: prob for idx, prob in enumerate(probabilities)},
         'filtered_emotions': emotions_above_threshold
     })
