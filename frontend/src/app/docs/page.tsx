@@ -45,7 +45,7 @@ const DocsPage = () => {
     setResult(null)
 
     try {
-      const response = await fetch('https://5ff7-2409-40f2-3057-980f-81ca-7fb1-6216-4718.ngrok-free.app/predict', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
