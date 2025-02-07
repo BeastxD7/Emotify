@@ -43,24 +43,33 @@ const PredictPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
         <Card className="bg-[#242424] border-none shadow-lg">
           <CardContent className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <Textarea
-                value={sentence}
-                onChange={(e) => setSentence(e.target.value)}
-                className="w-full p-4 bg-[#2a2a2a] border-none text-white placeholder-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 min-h-[200px] text-lg"
-                placeholder="Enter your text here..."
-              />
-              <div className="flex items-center gap-4">
-                <Button
-                  type="submit"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition duration-300"
-                  disabled={loading}
-                >
-                  {loading ? "Analyzing..." : "Analyze"}
-                </Button>
-                
-              </div>
-            </form>
+          <form
+  onSubmit={handleSubmit}
+  onKeyDown={(e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { // Don't submit on Shift + Enter
+      e.preventDefault(); // Prevent default form behavior
+      handleSubmit(e); // Trigger form submission manually
+    }
+  }}
+  className="space-y-4"
+>
+  <Textarea
+    value={sentence}
+    onChange={(e) => setSentence(e.target.value)}
+    className="w-full p-4 bg-[#2a2a2a] border-none text-white placeholder-gray-400 rounded-lg focus:ring-blue-500 focus:border-blue-500 min-h-[200px] text-lg"
+    placeholder="Enter your text here..."
+  />
+  <div className="flex items-center gap-4">
+    <Button
+      type="submit"
+      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition duration-300"
+      disabled={loading}
+    >
+      {loading ? "Analyzing..." : "Analyze"}
+    </Button>
+  </div>
+</form>
+
           </CardContent>
         </Card>
 
